@@ -13,14 +13,6 @@ class DestinationScreen extends StatefulWidget {
 }
 
 class _DestinationScreenState extends State<DestinationScreen> {
-  Text _buildRatingStars(int rating) {
-    String stars = '';
-    for (int i = 0; i < rating; i++) {
-      stars += '⭐ ';
-    }
-    stars.trim();
-    return Text(stars);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +160,6 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                 color: Colors.grey,
                               ),
                             ),
-                            _buildRatingStars(episode.rating),
                             SizedBox(height: 10.0),
                             Row(
                               children: <Widget>[

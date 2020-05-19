@@ -1,4 +1,4 @@
- 
+ import 'package:baby_names/screen/program_play.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:baby_names/models/program.dart';
@@ -11,7 +11,7 @@ class LiveCarousel extends StatelessWidget {
   List<Program> programs;
   @override
   Widget build(BuildContext context) {
-    programs = snapshot.map((data) => getListOfProgram(data));
+    programs = snapshot.map((data) => getListOfProgram(data)).toList();
     return Column(
       children: <Widget>[
         Padding(
@@ -20,7 +20,7 @@ class LiveCarousel extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                'Live Programs',
+                'Programs',
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
@@ -52,7 +52,14 @@ class LiveCarousel extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   if (program.episodes == null) {
-
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Programplay(
+                      program: program,
+                    ),
+                  ),
+                );
                   } else {
                   Navigator.push(
                   context,
@@ -94,7 +101,7 @@ class LiveCarousel extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  program.time,
+                                  '${program.time}',
                                   style: TextStyle(
                                     color: Colors.grey,
                                   ),
@@ -119,13 +126,13 @@ class LiveCarousel extends StatelessWidget {
                         child: Stack(
                           children: <Widget>[
                             Hero(
-                              tag: program.imageUrl,
+                              tag: '${program.imageUrl}',
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20.0),
-                                child: Image(
+                                child: Image.network(
+                                  '${program.imageUrl}',
                                   height: 180.0,
                                   width: 180.0,
-                                  image: AssetImage(program.imageUrl),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -137,10 +144,10 @@ class LiveCarousel extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    program.name,
+                                    '${program.name}',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 24.0,
+                                      fontSize: 15.0,
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: 1.2,
                                     ),
