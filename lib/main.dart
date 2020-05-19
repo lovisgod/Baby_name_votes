@@ -1,21 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:baby_names/models/Comment.dart';
 
 void main() => runApp(MyApp());
-
-final dummySnapshot = [
- {"name": "Filip", "votes": 15},
- {"name": "Abraham", "votes": 14},
- {"name": "Richard", "votes": 11},
- {"name": "Ike", "votes": 10},
- {"name": "Justin", "votes": 1},
-];
 
 class MyApp extends StatelessWidget {
  @override
  Widget build(BuildContext context) {
    return MaterialApp(
-     title: 'Baby Names',
+     title: 'Psirius Radio',
      debugShowCheckedModeBanner: false,
      home: MyHomePage(),
    );
@@ -33,21 +26,32 @@ class _MyHomePageState extends State<MyHomePage> {
  @override
  Widget build(BuildContext context) {
    return Scaffold(
-     appBar: AppBar(title: Text('Baby Name Votes')),
+     appBar: AppBar(title: Text('Psirius Radio')),
      body: _buildBody(context),
    );
  }
 
  Widget _buildBody(BuildContext context) {
-  //get actual snapshot from Cloud Firestore
-   return StreamBuilder<QuerySnapshot>(
-   stream: Firestore.instance.collection('baby').snapshots(),
-   builder: (context, snapshot) {
-     if (!snapshot.hasData) return LinearProgressIndicator();
-
-     return _buildList(context, snapshot.data.documents);
-   },
- );
+   return Scaffold(
+     body: SafeArea(
+       child: ListView(
+         padding: EdgeInsets.symmetric(vertical: 30.0),
+         children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: 20.0, right: 120.0),
+              child: Text(
+                'We bring Light into your dark side....',
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 20.0),
+         ],
+       ),
+     ),
+   );
  }
 
  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
@@ -76,20 +80,4 @@ class _MyHomePageState extends State<MyHomePage> {
      ),
    );
  }
-}
-
-class Record {
- final String name;
- final int votes;
- final DocumentReference reference;
-
- Record.fromMap(Map<String, dynamic> map, {this.reference})
-     : name = map['name'],
-       votes = map['votes'] == null ? 0 : map['votes'];
-
- Record.fromSnapshot(DocumentSnapshot snapshot)
-     : this.fromMap(snapshot.data, reference: snapshot.reference);
-
- @override
- String toString() => "Record<$name:$votes>";
 }
