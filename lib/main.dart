@@ -1,4 +1,5 @@
 import 'package:baby_names/screen/live_events.dart';
+import 'package:baby_names/screen/podcasts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:baby_names/models/Comment.dart';
@@ -58,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
              SizedBox(height: 20.0),
             LiveCarousel(snapshots),
             SizedBox(height: 20.0),
-            // HotelCarousel(),
+            PodcastCarousel(snapshots),
          ],
        ),
      ),
