@@ -8,6 +8,7 @@ class Program {
  final String details;
  final String anchor;
  final String imageUrl;
+ final String audioUrl;
  final List<Episode> episodes;
  final DocumentReference reference;
 
@@ -17,7 +18,8 @@ class Program {
        details =map['details'],
        imageUrl = map['imageUrl'],
        episodes = map['episodes'],
-       anchor = map['anchor'];
+       anchor = map['anchor'],
+       audioUrl = map['audioUrl'];
 
  Program.fromSnapshot(DocumentSnapshot snapshot)
      : this.fromMap(snapshot.data, reference: snapshot.reference);

@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:baby_names/models/episode.dart';
 import 'package:baby_names/models/program.dart';
@@ -16,6 +17,22 @@ class _ProgramplayScreenState extends State<Programplay> {
 
   IconData play = Icons.play_circle_filled;
   bool playing = false;
+  AudioPlayer player;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    player.dispose();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+     player = AudioPlayer();
+    //  player.setUrl(widget.program.audioUrl);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +127,18 @@ class _ProgramplayScreenState extends State<Programplay> {
                       GestureDetector(
                         onTap: () {   
                           setState(() {
-                            this.play = Icons.pause_circle_filled;
+                          
                             if ( this.playing == false) {
                               this.playing = true;
+                              this.play = Icons.pause_circle_filled;
+                             
+                              player.play(widget.program.audioUrl);
+                              player.setNotification(title: widget.program.name,
+                               imageUrl: widget.program.imageUrl);
                             } else {
                               this.playing = false;
+                              this.play = Icons.play_circle_filled;
+                              player.pause();
                             }
                           }); 
                       },
@@ -134,6 +158,11 @@ class _ProgramplayScreenState extends State<Programplay> {
                     ),
                      GestureDetector(
                         onTap: () {    
+                          player.stop();
+                          setState(() {
+                            this.playing = false;
+                            this.play = Icons.play_circle_filled;
+                          });
                       },
                         child: Container(
                         height: 60.0,
@@ -156,6 +185,7 @@ class _ProgramplayScreenState extends State<Programplay> {
             )
           ),
         ],
+
       ),
     );
   }
