@@ -194,7 +194,37 @@ class _ProgramplayScreenState extends State<Programplay> {
                     SizedBox(height: 20.0,),
                      GestureDetector(
                           onTap: () {    
-                           
+                            showModalBottomSheet<void>(
+                              isScrollControlled: true,
+                              elevation: 5.0,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                       decoration: BoxDecoration(
+                                         borderRadius: BorderRadius.all(Radius.circular(15)),
+                                          boxShadow: [
+                                              BoxShadow(
+                                             blurRadius: 10, color: Colors.grey[300], spreadRadius: 5)
+                                        ]),
+                                       margin: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                                        height: 400,
+                                        // color: Colors.white60,
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                              const Text('Modal BottomSheet'),
+                                                RaisedButton(
+                                                  child: const Text('Close BottomSheet'),
+                                                   onPressed: () => Navigator.pop(context),
+                                                )
+                                              ],
+                                          ),
+                                        ),
+                                  );
+                            },
+                            );
                          },
                           child: Container(
                           height: 40.0,
