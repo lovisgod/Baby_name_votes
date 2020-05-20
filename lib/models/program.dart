@@ -3,21 +3,34 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class Program {
+ String id; 
  final String name;
  final String time;
  final String details;
  final String anchor;
  final String imageUrl;
  final String audioUrl;
- final List<Episode> episodes;
- final DocumentReference reference;
+ bool episodes;
+ DocumentReference reference;
+
+
+   Program({
+    this.imageUrl,
+    this.name,
+    this.time,
+    this.details,
+    this.anchor,
+    this.audioUrl
+  });
 
  Program.fromMap(Map<String, dynamic> map, {this.reference})
-     : name = map['name'],
+      
+     : episodes = map['episodes'],
+       id = map['_id'],
+       name = map['name'],
        time = map['time'],
        details =map['details'],
        imageUrl = map['imageUrl'],
-       episodes = map['episodes'],
        anchor = map['anchor'],
        audioUrl = map['audioUrl'];
 

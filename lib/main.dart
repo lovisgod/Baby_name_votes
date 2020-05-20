@@ -59,7 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
              SizedBox(height: 20.0),
             LiveCarousel(snapshots),
             SizedBox(height: 20.0),
-            PodcastCarousel(snapshots),
+            StreamBuilder<QuerySnapshot>(
+              stream: Firestore.instance.collection('podcasts').snapshots(),
+              builder: (context, snapshot) {
+             if (!snapshot.hasData) return LinearProgressIndicator();
+              return  PodcastCarousel(snapshot.data.documents);
+           },
+          ),
          ],
        ),
      ),

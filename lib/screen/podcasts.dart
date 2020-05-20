@@ -51,7 +51,8 @@ class PodcastCarousel extends StatelessWidget {
               Program program = programs[index];
               return GestureDetector(
                 onTap: () {
-                  if (program.episodes == null) {
+                  print(program.id);
+                  if (program.episodes == false) {
                   Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -100,12 +101,12 @@ class PodcastCarousel extends StatelessWidget {
                                     letterSpacing: 1.2,
                                   ),
                                 ),
-                                Text(
-                                  '${program.time}',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
+                                // Text(
+                                //   '${program.time}',
+                                //   style: TextStyle(
+                                //     color: Colors.grey,
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),

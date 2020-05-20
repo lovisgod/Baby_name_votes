@@ -1,4 +1,4 @@
- import 'package:baby_names/screen/program_play.dart';
+import 'package:baby_names/screen/program_play.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:baby_names/models/program.dart';
@@ -51,7 +51,7 @@ class LiveCarousel extends StatelessWidget {
               Program program = programs[index];
               return GestureDetector(
                 onTap: () {
-                  if (program.episodes == null) {
+                  if (program.episodes == false) {
                   Navigator.push(
                   context,
                   MaterialPageRoute(

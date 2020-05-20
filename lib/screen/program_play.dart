@@ -190,7 +190,31 @@ class _ProgramplayScreenState extends State<Programplay> {
                      ),
                       ),
                     ],
-                    )
+                    ),
+                    SizedBox(height: 20.0,),
+                     GestureDetector(
+                          onTap: () {    
+                           
+                         },
+                          child: Container(
+                          height: 40.0,
+                          width: 200.0,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                          color: Colors.redAccent,
+                          borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        child: Text(
+                          'Comment',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600
+                          ),
+                        )
+                     ),
+                      ),
                   ],
                 ),
               )
@@ -201,11 +225,4 @@ class _ProgramplayScreenState extends State<Programplay> {
       ),
     );
   }
-
-//   Future<bool> _onBackPressed() {
-//     setState(() {
-//       playing = false;
-//     });
-//     player.stop();
-// }
 }
